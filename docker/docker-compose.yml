@@ -2,17 +2,11 @@ mysql:
     image: mysql:5.7.11
     environment:
         - MYSQL_ROOT_PASSWORD=root
-nginx:
-    image: skiychan/nginx-php7
+php :
+    image: php:7.2-apache
     ports:
         - "80:80"
     volumes:
         - ../src:/var/www/html
-    links:
-        - mysql:db
-phpmyadmin:
-    image: phpmyadmin/phpmyadmin:4.5.3.1-1
-    ports:
-        - "8080:8080"
     links:
         - mysql:db
