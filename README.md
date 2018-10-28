@@ -1,18 +1,16 @@
 try-docker
 ====
 
-参考のリンクを参考にWindows10でdockerを使用し、  
-PHP7の開発環境を構築するとこまで進める。
+Docker for WindowsはWindows10 Proでないと使用できない。
+docker toolbpxを使用する。
 
-Docker for WindowsはWindows10 Proでないと使用できないようだ…  
-Microsoft税払えないのでDocker Toolboxを使用する。
+LAMP環境を起動するところまで進める。
 
 # Docker Toolbox Install
 toolboxのインストールを行う。  
 https://qiita.com/maemori/items/52b1639fba4b1e68fccd  
   
 ・Kitematic初回起動後、「use VirtualBox」を選択する。  
-・Starting Docker VM 立ち上げ時「100%」になってから暫く固まってしまってびっくり仰天ニュース。
 
 # LAMP環境 構築
 Linkを参考にファイルを配置し、dockerを起動する。  
@@ -33,10 +31,18 @@ nginx:
         - mysql:db
 ```
 
+#
+`COMPOSE_CONVERT_WINDOWS_PATHS=1`
+
 #   
 以下のURLにアクセスし、phpinfoが表示されることを確認  
 http://192.168.99.100/  
 http://192.168.99.100/index.php
+
+# 手順
+1. kitematicを起動する。
+2. `docker-machine start`
+3. `docker-compose up -d`
 
 # Command  
 docker 起動  
@@ -65,6 +71,11 @@ dockerの中に入る
 docker exec -it docker_nginx_1 bash
 ``
 
+`windows named pipe error` が発生した場合
+``
+docker-machine env default --shell powershell | Invoke-Expression
+``
+
 # 参考
 よく使うDockerコマンド  
 https://qiita.com/tera_shin/items/8a43e904bd15990d3129
@@ -72,4 +83,3 @@ https://qiita.com/tera_shin/items/8a43e904bd15990d3129
 docker run(コンテナ作成)する時のオプションあれこれ  
 https://qiita.com/shimo_yama/items/d0c42394689132fcb4b6
 
-適宜追加していく。  
